@@ -4,7 +4,7 @@
 <head>
   <meta name="description" content="Webpage description goes here" />
   <meta charset="utf-8">
-  <title>webcites</title>
+  <title>{{$pageTitle}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -12,7 +12,11 @@
 </head>
 
 <body>
-  hi
+
+
+
+@yield('body')
+
 
 </body>
 </html>
