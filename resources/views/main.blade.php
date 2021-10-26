@@ -6,8 +6,9 @@
   <meta charset="utf-8">
   <title>{{$pageTitle}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+     <link rel="stylesheet" href={{ asset('bs/css/bootstrap.min.css')}}> 
 
 <style>
 body {
@@ -19,10 +20,17 @@ body {
 
 <body>
 
+<main class="container">
+
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">this is my blog</div>
 
 
 @yield('body')
 
+</main>
+
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 <script>

@@ -1,13 +1,11 @@
-@extends('body',['pageTitle'=>'aaa'])
+@extends('main',['pageTitle'=>'aaa'])
 
-
-
-@section('centersec')
+@section('body')
 
 
 @foreach($posts as $post)
 
-<div style="border:1px solid ; margin:5px" data-api="/api/posts" data-idx="{{$post->id}}">
+<div style="padding:5px" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" data-api="/api/posts" data-idx="{{$post->id}}">
 <h1 contenteditable="true" data-field="title">{{$post->title}}</h1>
 
 <div>
