@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\libs\shd;
 
 class postcontroller extends Controller
 {
@@ -60,8 +61,31 @@ class postcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        return ( $post->delete());
     }
+
+
+    public function botstore(Request $request)
+    {
+
+
+        $txt = shd::str_get_html("<a>zz</a>");
+
+        $x = $txt->find('a',0);
+
+        echo $x->innertext;
+        exit;
+
+        Post::CCREATE([
+
+            'path' => "test",
+            'title' => "zzz",
+            'text' => "ddd",
+
+        ]);
+        return "ok";
+    }
+
 }

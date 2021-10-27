@@ -43,11 +43,33 @@ $("*[contenteditable]").on("blur keyup paste input",function(e) {
 
 
 $("*[contenteditable]").bind("keyup keydown", function(e){
-    if(e.ctrlKey && e.which == 83){
-         var parentelem = $(this).parent();
+
+  var parentelem = $(this).parent();
   while(!parentelem.attr("data-idx")) {
     parentelem  = parentelem.parent();
   }
+
+
+ if(e.ctrlKey && e.which == 46){
+   if (confirm("delete ?")) {
+$.ajax({
+  url: parentelem.attr("data-api")+"/"+parentelem.attr("data-idx"),
+  type: 'DELETE',
+  data: jsondata,
+  success: function(data) {
+    console.log("ok");
+  }
+});
+
+  parentelem.remove();
+   }
+
+  return false;
+ }
+
+
+    if(e.ctrlKey && e.which == 83){
+
 
   console.log(parentelem.attr("data-idx")+"->"+$(this).attr("data-field")+' : '+$(this).html());
 

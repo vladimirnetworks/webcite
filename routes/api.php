@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('posts', 'App\Http\Controllers\api\postcontroller');
+
+Route::get('bot', 'App\Http\Controllers\api\postcontroller@botstore');
