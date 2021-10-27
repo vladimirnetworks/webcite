@@ -11,7 +11,7 @@ class photoTeleg
         $this->telegram = $telegram;
     }
 
-    static function toteleg($inp)
+    public function toteleg($inp)
     {
 
 
@@ -145,6 +145,6 @@ class photoTeleg
 
     public function mtest()
     {
-       return "works!";
+        return "works!";
     }
 }

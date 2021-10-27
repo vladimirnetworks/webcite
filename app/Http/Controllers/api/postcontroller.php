@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\libs\photoTeleg;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\libs\shd;
+use App\libs\Telegram;
 
 class postcontroller extends Controller
 {
@@ -51,8 +53,7 @@ class postcontroller extends Controller
     public function update(Request $request, Post $post)
     {
 
-        return ( $post->update($request->all()));
-
+        return ($post->update($request->all()));
     }
 
     /**
@@ -63,19 +64,49 @@ class postcontroller extends Controller
      */
     public function destroy(Post $post)
     {
-        return ( $post->delete());
+        return ($post->delete());
     }
+
 
 
     public function botstore(Request $request)
     {
 
 
-        $txt = shd::str_get_html("<a>zz</a>");
 
-        $x = $txt->find('a',0);
 
-        echo $x->innertext;
+
+
+        $base = "https://www.google.com/jasem/isok/post3.html";
+
+
+
+
+
+        $html = '<div> <img src="kdj.jpg"/> </div>';
+
+
+        $dom = shd::str_get_html($html);
+
+        $imgs = $dom->find('img');
+
+
+        $phototeleg = new photoTeleg(new Telegram("tokebbb"));
+        
+
+        foreach ($imgs as $img) {
+
+            $imgurl = $img->attr['src'];
+
+
+
+            $imgurl = fiximgurl($imgurl, $base);
+            $img = $phototeleg->toteleg($imgurl);
+            //
+            // ...
+
+
+        }
         exit;
 
         Post::CCREATE([
@@ -87,5 +118,4 @@ class postcontroller extends Controller
         ]);
         return "ok";
     }
-
 }
