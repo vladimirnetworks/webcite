@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\fireController@index');
 
+
+
+
+Route::get('/{path}.jpg','App\Http\Controllers\storageController@show');
+
+
 Route::get('/{path}', 'App\Http\Controllers\fireController@show');
 
 

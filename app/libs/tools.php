@@ -1,4 +1,11 @@
 <?php
+
+function citename()
+{
+
+    return strtolower(preg_replace("!^(www\.)!i", "", $_SERVER['HTTP_HOST']));
+}
+
 function fiximgurl($imgurl, $base)
 {
     $imgurl_parsed = parse_url($imgurl);
@@ -106,4 +113,18 @@ function fuck($text)
 /x
 END;
     return  preg_replace($regex, '$1', $text);
+}
+
+
+function dupli($fname)
+{
+
+    return  preg_replace_callback('!(?:-([0-9]+)(\.jpg|\.png|\.gif)$|(?=\.(?:jpg|png|gif)$))!', function ($m) {
+
+        if (isset($m[1]) && isset($m[2])) {
+            return '-' . ($m[1] + 1) . $m[2];
+        } else {
+            return "-2";
+        }
+    }, $fname);
 }
