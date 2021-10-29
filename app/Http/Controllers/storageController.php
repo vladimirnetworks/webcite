@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\libs\bencurl;
 use Illuminate\Http\Request;
 
 use App\Models\Storage;
@@ -14,42 +15,12 @@ class storageController extends Controller
     {
         // $this->insert();
 
-        $storeage = Storage::CGET()->where('path', '=', $filename)->get();
 
-        return $storeage[0]->origin;
-    }
+        $storeage = Storage::CGET()->where('path', '=', urlencode($filename))->get();
 
+        header("content-type: " . $storeage[0]->origin_type);
 
-    public function insert()
-    {
-
-        $path = "aaa.jpg";
-        $origin  = "http://origin.jpg";
-
-
-        $inserttedid = 0;
-        $atemp = 0;
-        do {
-            $atemp++;
-            try {
-                $xx =  Storage::CCREATE([
-
-                    'path' => $path,
-                    'origin' => $origin,
-                    'type' => "image/jpeg",
-
-                ]);
-
-                $inserttedid = $xx->id;
-            } catch (QueryException $e) {
-
-                $errorCode = $e->errorInfo[1];
-                if ($errorCode == 1062) {
-
-                    $pathii = dupli($path);
-                    echo $path . "<br>";
-                }
-            }
-        } while ($inserttedid == 0 && $atemp <= 10000);
+        $f = new bencurl($storeage[0]->origin);
+        echo $f->download();
     }
 }

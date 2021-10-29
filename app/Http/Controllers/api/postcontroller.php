@@ -77,7 +77,18 @@ class postcontroller extends Controller
 
 
         $base = "https://www.google.com/jasem/isok/post3.html";
-        $html = '<div> <img alt="کریم بنزمال" src="http://dl.topnaz.com/fun/2012/4/image/217561_826.jpg"/> </div>';
+        $html = '<div> <img alt="کریم بنزمال" src="http://dl.topnaz.com/fun/2012/4/image/217561_826.jpg"/> 
+        
+        <img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Atat%C3%BCrk_Kemal.jpg/428px-Atat%C3%BCrk_Kemal.jpg"/>
+        
+        
+        </div>';
+
+
+        $html = '
+
+        <img src="https://sc.upid.ir/upload/15tcjvtg/%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C-%D9%84%D8%A7%DA%A9-%D9%86%D8%A7%D8%AE%D9%86.jpg" />
+';
         $title = "this is benz";
 
 
@@ -97,11 +108,23 @@ class postcontroller extends Controller
 
             $imgfile = new bencurl($imgurl);
             $allheaders = $imgfile->Headers();
+
+            
             $filesize = $imgfile->filesize();
-            foreach ($allheaders[count($allheaders) - 1] as $header) {
+            foreach ((array) $allheaders[count($allheaders) - 1] as $header) {
+
+
+
 
                 if (preg_match("!content\-type\:\s!i", $header)) {
-                    if (preg_match("!jpeg|jpg|png|gif!i", $header) && $filesize >= 1024) {
+
+
+
+
+                  
+                 
+
+                    if (preg_match("!jpeg|jpg|png|gif!i", $header)/* && $filesize >= 1024*/) {
 
                         if (isset($img->attr['title'])) {
                             $filename = $img->attr['title'];
@@ -110,6 +133,10 @@ class postcontroller extends Controller
                         if (isset($img->attr['alt'])) {
                             $filename = $img->attr['alt'];
                         }
+
+
+                       
+
 
                         if (preg_match("!jpeg|jpg!i", $header)) {
                             $exten = "jpg";
@@ -126,12 +153,54 @@ class postcontroller extends Controller
                             $type = "image/gif";
                         }
 
-                        $path = ($filename).".".$exten;
 
-                      
+                        
 
-                        Storage::Insert($path, $imgurl, json_encode([$filesize,$type]));
+                        $path = urlize($filename) . "." . $exten;
 
+                        $imgload = new bencurl($imgurl);
+
+                        $image = imagecreatefromstring($imgload->download());
+
+                        $width  = imagesx($image);
+                        $height = imagesy($image);
+
+
+
+                        $inserted = Storage::Insert(
+
+                            [
+
+                                'path' => $path,
+                                'origin' => $imgurl,
+                                'origin_type' => $type,
+                                'origin_size' => $filesize,
+                                'origin_width' => $width,
+                                'origin_height' => $height,
+
+                            ]
+
+                        );
+
+
+                        if (isset($inserted->id)) {
+
+                            $maxwidth = 320;
+
+                            if ($width > 320) {
+
+                                $prc = $width / $maxwidth;
+                                $height = round($height / $prc);
+
+                                $newelem  = '<a href="' . $inserted->path . '"><img src="' . $inserted->path . '?size=small" width="' . $maxwidth . '" height="' . $height . '" /></a>';
+                            } else {
+
+                                $newelem  = '<img src="' . $inserted->path . '" width="' . $width . '" height="' . $height . '" />';
+                            }
+
+
+                            echo $newelem;
+                        }
                     }
                 }
             }

@@ -10,7 +10,7 @@ class Storage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['webcite', 'origin', 'path', 'origin_data'];
+    protected $fillable = ['webcite', 'origin', 'path', 'origin_type', 'origin_size','origin_width','origin_height'];
 
 
     public static function CGET()
@@ -27,7 +27,7 @@ class Storage extends Model
 
 
 
-    public static function Insert($path, $origin,$origin_data)
+    public static function Insert($inp)
     {
 
         $createstorage = null;
@@ -37,29 +37,21 @@ class Storage extends Model
         do {
             $atemp++;
             try {
-                $createstorage =  Storage::CCREATE([
-
-                    'path' => $path,
-                    'origin' => $origin,
-                    'origin_data' => $origin_data,
-
-                ]);
+                $createstorage =  Storage::CCREATE($inp);
 
                 $inserttedid = $createstorage->id;
             } catch (QueryException $e) {
 
-               
+
                 $errorCode = $e->errorInfo[1];
                 if ($errorCode == 1062) {
 
-                    $path = dupli($path);
-                 
-                
+                    $inp['path'] = dupli($inp['path']);
                 }
             }
         } while ($inserttedid == 0 && $atemp <= 10000);
 
-      
+
         return  $createstorage;
     }
 }

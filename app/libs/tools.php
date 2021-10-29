@@ -2,6 +2,23 @@
 include('ua.php');
 
 
+function urlize($i) {
+
+    $allow[] = 'a-z';
+    $allow[] = 'A-Z';
+    $allow[] = 'آابپتثجچ‌حخدذرز‌ژس‌شصضطظعغفقکگلمنوهی';
+
+    $i = arabic_to_farsi($i);
+    $i = preg_replace("![^".implode("",$allow)."]+!","-",$i);
+    $i = preg_replace("!\-$|^\-!","",$i);
+    $i = urlencode($i);
+
+    return $i;
+
+}
+
+
+
 function fixencode($inp)
 {
     return  preg_replace_callback("![^[:ascii:]]!", function ($i) {
