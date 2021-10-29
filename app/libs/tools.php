@@ -1,4 +1,31 @@
 <?php
+include('ua.php');
+
+
+function fixencode($inp)
+{
+    return  preg_replace_callback("![^[:ascii:]]!", function ($i) {
+        return urlencode($i[0]);
+    }, $inp);
+}
+
+
+function gett($u, $headers = null, $ua = null)
+{
+    $u = fixencode($u);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $u);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_HEADER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 7);
+    $userAgent =  UserAgent::random(['os_type' => "Windows", 'device_type' => "Desktop"]);
+    curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
+    return curl_exec($ch);
+}
 
 function citename()
 {

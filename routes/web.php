@@ -20,10 +20,16 @@ Route::get('/', 'App\Http\Controllers\fireController@index');
 
 
 
-Route::get('/{path}.jpg','App\Http\Controllers\storageController@show');
+
+Route::get('/{filepath}','App\Http\Controllers\storageController@show')->where(
+    ['filepath'=>'.*\.jpg$']
+);
 
 
-Route::get('/{path}', 'App\Http\Controllers\fireController@show');
+Route::get('/{path}','App\Http\Controllers\fireController@show');
+
+
+
 
 
 
