@@ -7,9 +7,12 @@ use App\libs\photoTeleg;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Storage;
-use App\libs\shd;
+
 use App\libs\Telegram;
-use App\libs\bencurl;
+
+
+use vladimirnetworks\curl\bencurl;
+use vladimirnetworks\htmlparser\shd;
 
 class postcontroller extends Controller
 {
@@ -92,6 +95,10 @@ class postcontroller extends Controller
         $title = "this is benz";
 
 
+
+     
+
+
         $dom = shd::str_get_html($html);
         $imgs = $dom->find('img');
 
@@ -107,9 +114,10 @@ class postcontroller extends Controller
             $imgurl = fiximgurl($imgurl, $base);
 
             $imgfile = new bencurl($imgurl);
+         
             $allheaders = $imgfile->Headers();
 
-            
+
             $filesize = $imgfile->filesize();
             foreach ((array) $allheaders[count($allheaders) - 1] as $header) {
 
@@ -121,8 +129,8 @@ class postcontroller extends Controller
 
 
 
-                  
-                 
+
+
 
                     if (preg_match("!jpeg|jpg|png|gif!i", $header)/* && $filesize >= 1024*/) {
 
@@ -135,7 +143,7 @@ class postcontroller extends Controller
                         }
 
 
-                       
+
 
 
                         if (preg_match("!jpeg|jpg!i", $header)) {
@@ -154,7 +162,7 @@ class postcontroller extends Controller
                         }
 
 
-                        
+
 
                         $path = urlize($filename) . "." . $exten;
 
@@ -187,7 +195,7 @@ class postcontroller extends Controller
 
                             $maxwidth = 320;
 
-                            if ($width > 320) {
+                            if ($width > $maxwidth) {
 
                                 $prc = $width / $maxwidth;
                                 $height = round($height / $prc);
@@ -213,13 +221,6 @@ class postcontroller extends Controller
         }
         exit;
 
-        Post::CCREATE([
 
-            'path' => "test",
-            'title' => "zzz",
-            'text' => "ddd",
-
-        ]);
-        return "ok";
     }
 }

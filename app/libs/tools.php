@@ -1,5 +1,5 @@
 <?php
-include('ua.php');
+
 
 
 function urlize($i) {

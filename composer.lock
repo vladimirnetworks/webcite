@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4842c22e789d247c4b660e69490545f",
+    "content-hash": "22730156e07a073423a772b98807d530",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -121,6 +121,55 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "campo/random-user-agent",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joecampo/random-user-agent.git",
+                "reference": "4a88bd90f66ca398b050b19848e3c6ea143ce8a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joecampo/random-user-agent/zipball/4a88bd90f66ca398b050b19848e3c6ea143ce8a0",
+                "reference": "4a88bd90f66ca398b050b19848e3c6ea143ce8a0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Campo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Campo",
+                    "email": "jcampo@gmail.com"
+                }
+            ],
+            "description": "Generate real random user-agents.",
+            "keywords": [
+                "spoofing user",
+                "user agent",
+                "user agents",
+                "user-agent"
+            ],
+            "support": {
+                "issues": "https://github.com/joecampo/random-user-agent/issues",
+                "source": "https://github.com/joecampo/random-user-agent/tree/master"
+            },
+            "time": "2018-06-13T14:26:21+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -5230,6 +5279,87 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.3"
             },
             "time": "2020-07-13T06:12:54+00:00"
+        },
+        {
+            "name": "vladimirnetworks/bencurl",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vladimirnetworks/bencurl.git",
+                "reference": "922d3df4b8a495e77e075b2ff19583e13ff30b8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vladimirnetworks/bencurl/zipball/922d3df4b8a495e77e075b2ff19583e13ff30b8c",
+                "reference": "922d3df4b8a495e77e075b2ff19583e13ff30b8c",
+                "shasum": ""
+            },
+            "require": {
+                "campo/random-user-agent": "1.3.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "vladimirnetworks\\curl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "vladimirnetworks",
+                    "email": "vladimirnetworks@gmail.com"
+                }
+            ],
+            "description": "fast and lite curl for php",
+            "support": {
+                "issues": "https://github.com/vladimirnetworks/bencurl/issues",
+                "source": "https://github.com/vladimirnetworks/bencurl/tree/1.0.2"
+            },
+            "time": "2021-10-30T10:26:49+00:00"
+        },
+        {
+            "name": "vladimirnetworks/shd",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vladimirnetworks/shd.git",
+                "reference": "af12033185acfd48505c9fd2385f4f5165bbc905"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vladimirnetworks/shd/zipball/af12033185acfd48505c9fd2385f4f5165bbc905",
+                "reference": "af12033185acfd48505c9fd2385f4f5165bbc905",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "vladimirnetworks\\htmlparser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "vladimirnetworks",
+                    "email": "vladimirnetworks@gmail.com"
+                }
+            ],
+            "description": "https://simplehtmldom.sourceforge.io/",
+            "support": {
+                "issues": "https://github.com/vladimirnetworks/shd/issues",
+                "source": "https://github.com/vladimirnetworks/shd/tree/1.0.1"
+            },
+            "time": "2021-10-30T16:03:32+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
