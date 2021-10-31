@@ -30,7 +30,7 @@
         }
         ,
         "files" : [
-            "app/libs/tools.php"
+            "app/tools.php"
         ]
     },
     "autoload-dev": {
