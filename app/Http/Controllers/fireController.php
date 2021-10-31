@@ -16,7 +16,7 @@ class fireController extends Controller
 
 
     $posts = Post::CGET()->orderBy('id', 'DESC')->paginate(10, ['*'], 'page', $request->page);
-    return view("center",["pageTitle"=>"z","posts"=>$posts]);
+    return view("center",["pageTitle"=>"webcite title","posts"=>$posts]);
   }
 
 
