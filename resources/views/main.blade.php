@@ -22,7 +22,7 @@ body {
 
 <main class="container">
 
-<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">websicite name update</div>
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">websicite name update2</div>
 
 
 @yield('body')
