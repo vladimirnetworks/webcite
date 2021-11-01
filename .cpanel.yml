@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/benhamir/public_html/webcite/
+    - /bin/cp -R * $DEPLOYPATH
